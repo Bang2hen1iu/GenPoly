@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="GenPoly.">
+    <meta name="keywords" content="GenPoly">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GenPoly</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+        dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+
+        /* 原来的图像矩阵的设定 */
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .divider {
+            border: none;
+            height: 2px;
+            /* 可以调整线条的厚度 */
+            background-color: #886a6a;
+            /* 深灰色线条 */
+            margin: 20px 0;
+            /* 上下各20px的外边距 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* 添加阴影效果 */
+            flex-basis: 100%;
+        }
+
+        /* 6×8矩阵、9×10矩阵、5×9矩阵的css设置 */
+        .image-grid-container-68-910-59-36 {
+            text-align: left;      /* 文本居左 */
+        }
+
+        /* uncondition generation的 6×8矩阵 css设置 */
+        .image-grid-68 {
+            display: grid;
+            grid-template-columns: repeat(8, 160px); /* 8列，每列160px宽 */
+            grid-template-rows: repeat(6, 160px) 50px; /* 6行160px高，最后一行用于描述 */
+            gap: 10px;                               /* 单元格间距 */
+            width: 100%;                             /* 容器宽度 */
+            max-width: 1350px;                       /* 设置最大宽度限制（8*160px + 7*10px间隙 = 1350px） */
+            justify-content: center;
+        }
+
+        .image-grid-68 img {
+            width: 160px;                            /* 图片宽度160px */
+            height: 160px;                           /* 图片高度160px */
+            object-fit: cover;                       /* 保持图片比例并裁剪 */
+        }
+
+        .description-68 {
+            grid-column: span 2;                     /* 描述文本跨越两列 */
+            width: 320px;                            /* 描述文本宽度320px（两列宽度） */
+            height: 50px;                           /* 描述文本高度160px */
+            background-color: #ffffff;               /* 描述背景颜色 */
+            text-align: center;                      /* 文本居中 */
+            line-height: 50px;                      /* 文本垂直居中 */
+            font-size: 20px;                         /* 文本大小 */
+            color: #000000;                             /* 文本颜色 */
+        }
+
+        .additional-description-68 {
+            width: 100%;                             /* 与图像矩阵宽度一致 */
+            max-width: 1340px;                       /* 设置最大宽度限制 */
+            margin-top: 5px;                        /* 与上方图像矩阵之间的间距 */
+            margin-bottom: 75px;                    /* 与下方图像矩阵之间的间距 */
+            padding: 10px;                           /* 内边距 */
+            background-color: #ffffff;               /* 背景颜色 */
+            text-align: left;                      /* 文本居左 */
+            font-size: 20px;                         /* 文本大小 */
+            color: #000000;                             /* 文本颜色 */
+        }
+
+        /* uncondition generation的 9×10矩阵 css设置 */
+        .image-grid-910 {
+            display: grid;
+            grid-template-columns: repeat(10, 160px); /* 10列，每列160px宽 */
+            grid-template-rows: repeat(9, 160px);      /* 9行160px高 */
+            gap: 10px;                               /* 单元格间距 */
+            width: 100%;                             /* 容器宽度 */
+            max-width: 1690px;                       /* 设置最大宽度限制（10*160px + 9*10px间隙 = 1690px） */
+            justify-content: center;
+        }
+
+        .image-grid-910 img {
+            width: 160px;                            /* 图片宽度160px */
+            height: 160px;                           /* 图片高度160px */
+            object-fit: cover;                       /* 保持图片比例并裁剪 */
+        }
+
+        .additional-description-910 {
+            width: 100%;                             /* 与图像矩阵宽度一致 */
+            max-width: 1690px;                       /* 设置最大宽度限制 */
+            margin-top: 5px;                        /* 与上方图像矩阵之间的间距 */
+            padding: 10px;                           /* 内边距 */
+            background-color: #ffffff;               /* 背景颜色 */
+            text-align: left;                      /* 文本居左 */
+            font-size: 20px;                         /* 文本大小 */
+            color: #000000;                             /* 文本颜色 */
+        }
+
+        /* text to 3D 的5×9矩阵的css设置 */
+        .image-grid-59 {
+            display: grid;
+            grid-template-columns: repeat(9, 160px); /* 9列，每列160px宽 */
+            grid-template-rows: repeat(4, 160px) 50px; /* 4行160px高，最后一行用于描述 */
+            gap: 10px;                               /* 单元格间距 */
+            width: 100%;                             /* 容器宽度 */
+            max-width: 1520px;                       /* 设置最大宽度限制（9*160px + 8*10px间隙 = 1520px） */
+            justify-content: center;
+        }
+
+        .image-grid-59 img {
+            width: 160px;                            /* 图片宽度160px */
+            height: 160px;                           /* 图片高度160px */
+            object-fit: cover;                       /* 保持图片比例并裁剪 */
+        }
+
+        .text-description-59 {
+            grid-column: span 2;                     /* 描述文本跨越两列 */
+            width: 330px;                            /* 描述文本宽度330px（两列宽度 + 间距） */
+            background-color: #ffffff;             /* 描述背景颜色 */
+            text-align: center;                      /* 文本居中 */
+            font-size: 20px;                         /* 文本大小 */
+            color: #000000;                        /* 文本颜色 */
+            word-wrap: break-word;                   /* 处理长单词，使其换行 */
+            overflow-wrap: break-word;               /* 处理长单词，使其换行 */
+            display: flex;                           /* 使用flex布局 */
+            align-items: center;                     /* 垂直居中 */
+            justify-content: center;                 /* 水平居中 */
+            padding: 10px;                           /* 内边距 */
+            box-sizing: border-box;                  /* 确保padding包含在width内 */
+        }
+
+        .description-59-2column {
+            grid-column: span 2;                     /* 描述文本跨越2列 */
+            width: 320px;                            /* 描述文本宽度320px（2列宽度） */
+            height: 50px;                           /* 描述文本高度50px */
+            background-color: #ffffff;               /* 描述背景颜色 */
+            text-align: center;                      /* 文本居中 */
+            line-height: 50px;                      /* 文本垂直居中 */
+            font-size: 20px;                         /* 文本大小 */
+            color: #000000;                             /* 文本颜色 */
+        }
+
+        .description-59-3column {
+            grid-column: span 3;                     /* 描述文本跨越3列 */
+            width: 480px;                            /* 描述文本宽度4800px（3列宽度） */
+            height: 50px;                           /* 描述文本高度50px */
+            background-color: #ffffff;               /* 描述背景颜色 */
+            text-align: center;                      /* 文本居中 */
+            line-height: 50px;                      /* 文本垂直居中 */
+            font-size: 20px;                         /* 文本大小 */
+            color: #000000;                             /* 文本颜色 */
+        }
+
+        .additional-description-59 {
+            width: 100%;                             /* 与图像矩阵宽度一致 */
+            max-width: 1520px;                       /* 设置最大宽度限制 */
+            margin-top: 5px;                        /* 与上方图像矩阵之间的间距 */
+            /* margin-bottom: 75px;                    与下方图像矩阵之间的间距 */
+            padding: 10px;                           /* 内边距 */
+            background-color: #ffffff;               /* 背景颜色 */
+            text-align: left;                      /* 文本居左 */
+            font-size: 20px;                         /* 文本大小 */
+            color: #000000;                             /* 文本颜色 */
+        }
+
+        /* Single-view Shape Reconstruction 的3×6矩阵的css设置 */
+        .image-grid-36 {
+            display: grid;
+            grid-template-columns: repeat(6, 160px);    /* 6列，每列160px宽 */
+            grid-template-rows: repeat(3, 160px);       /* 3行160px高*/
+            gap: 10px;                                  /* 单元格间距 */
+            width: 100%;                                /* 容器宽度 */
+            max-width: 1010px;                          /* 设置最大宽度限制（6*160px + 5*10px间隙 = 1010px） */
+            justify-content: center;
+        }
+
+        .image-grid-36 img {
+            width: 160px;                            /* 图片宽度160px */
+            height: 160px;                           /* 图片高度160px */
+            object-fit: cover;                       /* 保持图片比例并裁剪 */
+        }
+
+        .additional-description-36 {
+            width: 100%;                             /* 与图像矩阵宽度一致 */
+            max-width: 1010px;                       /* 设置最大宽度限制 */
+            margin-top: 5px;                        /* 与上方图像矩阵之间的间距 */
+            /* margin-bottom: 75px;                    与下方图像矩阵之间的间距 */
+            padding: 10px;                           /* 内边距 */
+            background-color: #ffffff;               /* 背景颜色 */
+            text-align: center;                      /* 文本居中 */
+            font-size: 20px;                         /* 文本大小 */
+            color: #000000;                             /* 文本颜色 */
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">GenPoly: Learning Generalized Shape Priors via 3D Polymorphic Evolving</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                            Bangzhen Liu<sup>*</sup></a><sup>1</sup>,</span>
+                            <span class="author-block">
+                            Yuyang Yu<sup>*</sup></a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                            Chenxi Zheng<sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                            Shaoyu Huang<sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                            Haoxin Yang<sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                            Xuemiao Xu<sup>+</sup></a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                            Cheng Xu<sup>+</sup></a><sup>2</sup>,
+                            </span>
+                            <span class="author-block">
+                            Shengfeng He<sup>3</sup>
+                            </span>
+                        </div>
+    
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>South China University of Technology,
+                            </span>
+                            <span class="author-block"><sup>2</sup>The Hong Kong Polytechnic University,
+                            </span>
+                            <span class="author-block"><sup>3</sup>Singapore Management University
+                            </span>
+                        </div>
+    
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2011.12948"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/google/nerfies"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="method-overview">
+                <img src="./static/images/teaser/teaser.png" alt="teaser figure">
+            </div>
+            <div class="content has-text-justified">
+                <p>
+                    We introduce a novel 3D prior model for generalized fine-detailed 3D generation. Unlike current methods that (a) decompose objects into coarse-grained parts and focus on reassembling them into complete shapes, sacrificing local geometry details. (b) Our prior model explicitly excavates multi-level intricate local geometry variations and progressively refines shape details in a coarse-to-fine manner. This process yields versatile, tessellated priors that enable high-fidelity 3D generation across a variety of downstream tasks.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <hr class="divider"> 
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We introduce <strong>GenPoly</strong>, a novel generalized 3D prior model specially designed for multiple 3D generation tasks, with a distinct
+                            focus on fine details preservation. Previous works often assemble discrete parts into complete shapes, inevitably leading to loss of
+                            details. We remedy this problem by explicitly capturing nuanced local geometric variations across multiple levels, enabling detail-
+                            preserved 3D shape generation. Specifically, we first introduce a polymorphic variational autoencoder (PolyVAE), which constructs
+                            a versatile shape residual codebook via a polymorphic quantization mechanism. This codebook strategically encodes multilevel
+                            intricate local geometry representations within the latent space. Building on these representations, a 3D polymorphic evolving
+                            scheme is further developed to progressively refine local details in a coarse-to-fine manner. In this way, visually compelling 3D
+                            shapes with rich and complex details can be ultimately generated. The effectiveness of our method is demonstrated through extensive
+                            qualitative and quantitative evaluations, where GenPoly consistently surpasses state-of-the-art methods across various downstream tasks,
+                            particularly in local detail preservation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+
+            <hr class="divider"> 
+
+            <!-- Paper method. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Method</h2>
+                    <div class="method-overview">
+                        <img src="./static/images/method/pipeline_vae.png" alt="method figure">
+                    </div>
+                    <div class="content has-text-justified">
+                        <p>
+                            <strong>Overview of the proposed PolyVAE framework.</strong> Starting with an input shape \( \mathcal{X} \) , the shape feature \( Z \) is extracted by a 3D encoder \( \mathit{E} \) and progressively quantized into polymorphic geometric representations. These representations are response for constructing a diverse polymorphic residual codebook \( \mathcal{C} \) through a tailored polymorphic quantization mechanism. The quantization mechanism consists of \( n \) branches, with the first branch quantizing the basic shape feature \( Z_1 \), while the subsequent branches extract polymorphic residuals from residual shapes \( \left\{Z_2, ... Z_n\right\} \). This approach captures refined multi-scale geometric features, supporting the generation of 3D shapes using rich multi-resolution geometric representations from the polymorphic residual codebook. Finally, the quantized features\( \{\hat{Z}_1, ... \hat{Z}_n\} \) are cascadedly aggregated and decoded into 3D shapes via a shared decoder \( \mathit{D} \), where the reconstruction loss is computed.
+                        </p>
+                    </div>
+            </div>
+            <!--/ Paper method. -->
+        </div>
+    </section>
+    <hr class="divider"> 
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Unconditional 3D Shape Generation</h2>
+                </div>
+            </div>
+
+            <!-- 6行8列和9行10列的图像矩阵 -->
+            <div class="image-grid-container-68-910-59-36">
+
+                <!-- 6行8列的图像矩阵 -->
+                <div class="image-grid-68">
+                    <!-- 第1行 -->
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_337.png" alt="GIF 1">
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_576.png" alt="GIF 2">
+                    <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_1197.gif" alt="GIF 3">
+                    <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_0265.gif" alt="GIF 4">
+                    <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_0461.gif" alt="GIF 5">
+                    <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_1310.gif" alt="GIF 6">
+                    <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_201.gif" alt="GIF 7">
+                    <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_32.gif" alt="GIF 8">
+                
+                    <!-- 第2行 -->
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_83.png" alt="GIF 9">
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_175.png" alt="GIF 10">
+                    <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_0446.gif" alt="GIF 11">
+                    <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_1350.gif" alt="GIF 12">
+                    <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_1018.gif" alt="GIF 13">
+                    <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_0724.gif" alt="GIF 14">
+                    <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_888.gif" alt="GIF 15">
+                    <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_464.gif" alt="GIF 16">
+                
+                    <!-- 第3行 -->
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_337.png" alt="GIF 17">
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_576.png" alt="GIF 18">
+                    <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_0730.gif" alt="GIF 19">
+                    <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_1058.gif" alt="GIF 20">
+                    <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0143.gif" alt="GIF 21">
+                    <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0028.gif" alt="GIF 22">
+                    <img src="./static/images/uncond/compare/ours/car/freecompress-car_370.gif" alt="GIF 23">
+                    <img src="./static/images/uncond/compare/ours/car/freecompress-car_24.gif" alt="GIF 24">
+                
+                    <!-- 第4行 -->
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_83.png" alt="GIF 25">
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_175.png" alt="GIF 26">
+                    <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_1349.gif" alt="GIF 27">
+                    <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_0427.gif" alt="GIF 28">
+                    <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0369.gif" alt="GIF 29">
+                    <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0314.gif" alt="GIF 30">
+                    <img src="./static/images/uncond/compare/ours/car/freecompress-car_414.gif" alt="GIF 31">
+                    <img src="./static/images/uncond/compare/ours/car/freecompress-car_121.gif" alt="GIF 32">
+                
+                    <!-- 第5行 -->
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_337.png" alt="GIF 33">
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_576.png" alt="GIF 34">
+                    <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0172.gif" alt="GIF 35">
+                    <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0398.gif" alt="GIF 36">
+                    <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0029.gif" alt="GIF 37">
+                    <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0639.gif" alt="GIF 38">
+                    <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0526.gif" alt="GIF 39">
+                    <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0256.gif" alt="GIF 40">
+
+                    <!-- 第6行 -->
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_83.png" alt="GIF 41">
+                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_175.png" alt="GIF 42">
+                    <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0440.gif" alt="GIF 43">
+                    <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0281.gif" alt="GIF 44">
+                    <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0769.gif" alt="GIF 45">
+                    <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0177.gif" alt="GIF 46">
+                    <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0103.gif" alt="GIF 47">
+                    <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0091.gif" alt="GIF 48">
+
+                    <!-- 第7行 放方法描述--> 
+                    <div class="description-68"><strong>(a) TIGER</strong></div>
+                    <div class="description-68"><strong>(b) SDF-Diff</strong></div>
+                    <div class="description-68"><strong>(c) 3DQD</strong></div>
+                    <div class="description-68"><strong>(d) Ours</strong></div>
+                </div>
+
+                <!-- 添加描述段落 -->
+                <div class="additional-description-68">
+                    <strong>Qualitative comparisons for unconditional generation.</strong> We select similar generated shapes of different methods for more comparable evaluation. Our generated shapes are of high quality, with well geometric details and smooth surfaces. We recommand zooming in for better viewing.
+                </div>
+                
+                <!-- 9行10列的图像矩阵 -->
+                <div class="image-grid-910">
+                    <!-- 第1行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 1">
+                    <img src="./static/images/00000.gif" alt="GIF 2">
+                    <img src="./static/images/00000.gif" alt="GIF 3">
+                    <img src="./static/images/00000.gif" alt="GIF 4">
+                    <img src="./static/images/00000.gif" alt="GIF 5">
+                    <img src="./static/images/00000.gif" alt="GIF 6">
+                    <img src="./static/images/00000.gif" alt="GIF 7">
+                    <img src="./static/images/00000.gif" alt="GIF 8">
+                    <img src="./static/images/00000.gif" alt="GIF 9">
+                    <img src="./static/images/00000.gif" alt="GIF 10">
+                
+                    <!-- 第2行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 11">
+                    <img src="./static/images/00000.gif" alt="GIF 12">
+                    <img src="./static/images/00000.gif" alt="GIF 13">
+                    <img src="./static/images/00000.gif" alt="GIF 14">
+                    <img src="./static/images/00000.gif" alt="GIF 15">
+                    <img src="./static/images/00000.gif" alt="GIF 16">
+                    <img src="./static/images/00000.gif" alt="GIF 17">
+                    <img src="./static/images/00000.gif" alt="GIF 18">
+                    <img src="./static/images/00000.gif" alt="GIF 19">
+                    <img src="./static/images/00000.gif" alt="GIF 20">
+                
+                    <!-- 第3行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 21">
+                    <img src="./static/images/00000.gif" alt="GIF 22">
+                    <img src="./static/images/00000.gif" alt="GIF 23">
+                    <img src="./static/images/00000.gif" alt="GIF 24">
+                    <img src="./static/images/00000.gif" alt="GIF 25">
+                    <img src="./static/images/00000.gif" alt="GIF 26">
+                    <img src="./static/images/00000.gif" alt="GIF 27">
+                    <img src="./static/images/00000.gif" alt="GIF 28">
+                    <img src="./static/images/00000.gif" alt="GIF 29">
+                    <img src="./static/images/00000.gif" alt="GIF 30">
+  
+                    <!-- 第4行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 31">
+                    <img src="./static/images/00000.gif" alt="GIF 32">
+                    <img src="./static/images/00000.gif" alt="GIF 33">
+                    <img src="./static/images/00000.gif" alt="GIF 34">
+                    <img src="./static/images/00000.gif" alt="GIF 35">
+                    <img src="./static/images/00000.gif" alt="GIF 36">
+                    <img src="./static/images/00000.gif" alt="GIF 37">
+                    <img src="./static/images/00000.gif" alt="GIF 38">
+                    <img src="./static/images/00000.gif" alt="GIF 39">
+                    <img src="./static/images/00000.gif" alt="GIF 40">
+  
+                    <!-- 第5行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 41">
+                    <img src="./static/images/00000.gif" alt="GIF 42">
+                    <img src="./static/images/00000.gif" alt="GIF 43">
+                    <img src="./static/images/00000.gif" alt="GIF 44">
+                    <img src="./static/images/00000.gif" alt="GIF 45">
+                    <img src="./static/images/00000.gif" alt="GIF 46">
+                    <img src="./static/images/00000.gif" alt="GIF 47">
+                    <img src="./static/images/00000.gif" alt="GIF 48">
+                    <img src="./static/images/00000.gif" alt="GIF 49">
+                    <img src="./static/images/00000.gif" alt="GIF 50">
+  
+                    <!-- 第6行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 51">
+                    <img src="./static/images/00000.gif" alt="GIF 52">
+                    <img src="./static/images/00000.gif" alt="GIF 53">
+                    <img src="./static/images/00000.gif" alt="GIF 54">
+                    <img src="./static/images/00000.gif" alt="GIF 55">
+                    <img src="./static/images/00000.gif" alt="GIF 56">
+                    <img src="./static/images/00000.gif" alt="GIF 57">
+                    <img src="./static/images/00000.gif" alt="GIF 58">
+                    <img src="./static/images/00000.gif" alt="GIF 59">
+                    <img src="./static/images/00000.gif" alt="GIF 60">
+  
+                    <!-- 第7行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 61">
+                    <img src="./static/images/00000.gif" alt="GIF 62">
+                    <img src="./static/images/00000.gif" alt="GIF 63">
+                    <img src="./static/images/00000.gif" alt="GIF 64">
+                    <img src="./static/images/00000.gif" alt="GIF 65">
+                    <img src="./static/images/00000.gif" alt="GIF 66">
+                    <img src="./static/images/00000.gif" alt="GIF 67">
+                    <img src="./static/images/00000.gif" alt="GIF 68">
+                    <img src="./static/images/00000.gif" alt="GIF 69">
+                    <img src="./static/images/00000.gif" alt="GIF 70">
+  
+                    <!-- 第8行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 71">
+                    <img src="./static/images/00000.gif" alt="GIF 72">
+                    <img src="./static/images/00000.gif" alt="GIF 73">
+                    <img src="./static/images/00000.gif" alt="GIF 74">
+                    <img src="./static/images/00000.gif" alt="GIF 75">
+                    <img src="./static/images/00000.gif" alt="GIF 76">
+                    <img src="./static/images/00000.gif" alt="GIF 77">
+                    <img src="./static/images/00000.gif" alt="GIF 78">
+                    <img src="./static/images/00000.gif" alt="GIF 79">
+                    <img src="./static/images/00000.gif" alt="GIF 80">
+  
+                    <!-- 第9行 -->
+                    <img src="./static/images/00000.gif" alt="GIF 81">
+                    <img src="./static/images/00000.gif" alt="GIF 82">
+                    <img src="./static/images/00000.gif" alt="GIF 83">
+                    <img src="./static/images/00000.gif" alt="GIF 84">
+                    <img src="./static/images/00000.gif" alt="GIF 85">
+                    <img src="./static/images/00000.gif" alt="GIF 86">
+                    <img src="./static/images/00000.gif" alt="GIF 87">
+                    <img src="./static/images/00000.gif" alt="GIF 88">
+                    <img src="./static/images/00000.gif" alt="GIF 89">
+                    <img src="./static/images/00000.gif" alt="GIF 90">
+                  </div>
+                
+                  <!-- 添加描述段落 -->
+                <div class="additional-description-910">
+                    <strong>Qualitative results of unconditional generation for chair, car and airplane on ShapeNet, respectively.</strong> Our PolyVAE could sufficiently capture geometric informations of various scales, and  hence facilitate high-fidelity 3D shape generation with diverse style and promising details. We recommend zooming in for better viewing.
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <hr class="divider"> 
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Text-conditioned Generation</h2>
+                    <p>
+                        Given a text description, Our method can generate diverse and high quality shapes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 5行9列的图像矩阵 -->
+            <div class="image-grid-container-68-910-59-36">
+
+                <!-- 5行9列的图像矩阵 -->
+                <div class="image-grid-59">
+                    <!-- 第1行 -->
+                    <div class="text-description-59"><strong>A chair with circular seat.</strong></div>
+                    <img src="./static/images/00000.gif" alt="GIF 1">
+                    <img src="./static/images/00000.gif" alt="GIF 2">
+                    <img src="./static/images/00000.gif" alt="GIF 3">
+                    <img src="./static/images/00000.gif" alt="GIF 4">
+                    <img src="./static/images/00000.gif" alt="GIF 5">
+                    <img src="./static/images/00000.gif" alt="GIF 6">
+                    <img src="./static/images/00000.gif" alt="GIF 7">
+
+                    <!-- 第2行 -->
+                    <div class="text-description-59"><strong>A chair that has a really long backrest.</strong></div>
+                    <img src="./static/images/00000.gif" alt="GIF 8">
+                    <img src="./static/images/00000.gif" alt="GIF 9">
+                    <img src="./static/images/00000.gif" alt="GIF 10">
+                    <img src="./static/images/00000.gif" alt="GIF 11">
+                    <img src="./static/images/00000.gif" alt="GIF 12">
+                    <img src="./static/images/00000.gif" alt="GIF 13">
+                    <img src="./static/images/00000.gif" alt="GIF 14">
+
+                    <!-- 第3行 -->
+                    <div class="text-description-59"><strong>A chair with an opening at the bottom of the backrest.</strong></div>
+                    <img src="./static/images/00000.gif" alt="GIF 15">
+                    <img src="./static/images/00000.gif" alt="GIF 16">
+                    <img src="./static/images/00000.gif" alt="GIF 17">
+                    <img src="./static/images/00000.gif" alt="GIF 18">
+                    <img src="./static/images/00000.gif" alt="GIF 19">
+                    <img src="./static/images/00000.gif" alt="GIF 20">
+                    <img src="./static/images/00000.gif" alt="GIF 21">
+
+                    <!-- 第4行 -->
+                    <div class="text-description-59"><strong>A wooden chair featuring slats on all sides, including the armrests.</strong></div>
+                    <img src="./static/images/00000.gif" alt="GIF 22">
+                    <img src="./static/images/00000.gif" alt="GIF 23">
+                    <img src="./static/images/00000.gif" alt="GIF 24">
+                    <img src="./static/images/00000.gif" alt="GIF 25">
+                    <img src="./static/images/00000.gif" alt="GIF 26">
+                    <img src="./static/images/00000.gif" alt="GIF 27">
+                    <img src="./static/images/00000.gif" alt="GIF 28">
+
+                    <!-- 第5行 -->
+                    <div class="description-59-2column"></div>
+                    <div class="description-59-2column"><strong>3DQD</strong></div>
+                    <div class="description-59-2column"><strong>SDFusion</strong></div>
+                    <div class="description-59-3column"><strong>Ours</strong></div>
+
+                </div>
+
+                <!-- 添加描述段落 -->
+                <div class="additional-description-59">
+                    <strong>Qualitative comparisons for text-conditioned generation.</strong> Our generated shapes are more detail-preserving and better aligned with the text descriptions. We recommand zooming in for better viewing.
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <hr class="divider"> 
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Single-view Shape Reconstruction</h2>
+                    <p>
+                        The results of single-view reconstruction.
+                    </p>
+                </div>
+            </div>
+
+            <div class="image-grid-container-68-910-59-36">
+                
+                <!-- 3行6列的图像矩阵 -->
+                <div class="image-grid-36">
+
+                    <!-- 第1行 -->
+                    <img src="./static/images/image2shape/img/img_0064.png" alt="img 1">
+                    <img src="./static/images/00000.gif" alt="GIF 1">
+                    <img src="./static/images/image2shape/img/img_0067.png" alt="img 2">
+                    <img src="./static/images/00000.gif" alt="GIF 2">
+                    <img src="./static/images/image2shape/img/img_0088.png" alt="img 3">
+                    <img src="./static/images/00000.gif" alt="GIF 3">
+
+                    <!-- 第2行 -->
+                    <img src="./static/images/image2shape/img/img_0120.png" alt="img 4">
+                    <img src="./static/images/00000.gif" alt="GIF 4">
+                    <img src="./static/images/image2shape/img/img_0303.png" alt="img 5">
+                    <img src="./static/images/00000.gif" alt="GIF 5">
+                    <img src="./static/images/image2shape/img/img_0377.png" alt="img 6">
+                    <img src="./static/images/00000.gif" alt="GIF 6">
+
+                    <!-- 第3行 -->
+                    <img src="./static/images/image2shape/img/img_0039.png" alt="img 7">
+                    <img src="./static/images/00000.gif" alt="GIF 7">
+                    <img src="./static/images/image2shape/img/img_0055.png" alt="img 8">
+                    <img src="./static/images/00000.gif" alt="GIF 8">
+                    <img src="./static/images/image2shape/img/img_0077.png" alt="img 9">
+                    <img src="./static/images/00000.gif" alt="GIF 9">
+
+                </div>
+
+                <!-- 添加描述段落 -->
+                <div class="additional-description-36">
+                    Examples for single-view shape reconstruction.
+                </div>
+                
+            </div>
+
+        </div>
+    </section>
+    <hr class="divider"> 
+
+</body>
+
+</html>
