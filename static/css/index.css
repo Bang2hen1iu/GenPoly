@@ -52,13 +52,17 @@ body {
 }
 
 .publication-authors {
+    color: #555;
     font-family: 'Google Sans', sans-serif;
+    font-weight: bold;
+    justify-content: center;
 }
 
 .publication-venue {
     color: #555;
     width: fit-content;
-    font-weight: bold;
+    /* font-weight: bold; */
+    justify-content: center;
 }
 
 .publication-awards {

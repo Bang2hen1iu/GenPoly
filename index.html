@@ -77,16 +77,61 @@
             max-width: 1350px;                       /* 设置最大宽度限制（8*160px + 7*10px间隙 = 1350px） */
             justify-content: center;
         }
-
         .image-grid-68 img {
             width: 160px;                            /* 图片宽度160px */
             height: 160px;                           /* 图片高度160px */
             object-fit: cover;                       /* 保持图片比例并裁剪 */
         }
 
+        .uncond_container {
+            width: 940px; /* 宽度适应30列，每列200px, 间隔为10px */
+            overflow: hidden;
+            justify-content: center;
+        }
+
+        .uncond_compare_container {
+            width: 1030px; /* 宽度适应30列，每列200px, 间隔为10px */
+            overflow: hidden;
+            justify-content: center;
+        }
+        .slide-image-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(16, 250px); /* 每行5张图片，每张图片300px宽 */
+            grid-gap: 10px; /* 图片之间的间距 */
+            transition: transform 0.5s ease;
+        }
+
+        .slide-image-grid-4 img {
+            width: 250px;                            /* 图片宽度160px */
+            height: 250px;                           /* 图片高度160px */
+            border-radius: 10px;
+            object-fit: cover;                       /* 保持图片比例并裁剪 */
+            justify-content: center;
+        }
+
+        .slide-image-grid-5 {
+            display: grid;
+            grid-template-columns: repeat(30, 180px); /* 每行5张图片，每张图片300px宽 */
+            grid-gap: 10px; /* 图片之间的间距 */
+            transition: transform 0.5s ease;
+        }
+
+        .slide-image-grid-5 img {
+            width: 180px;                            /* 图片宽度160px */
+            height: 180px;                           /* 图片高度160px */
+            border-radius: 10px;
+            object-fit: cover;                       /* 保持图片比例并裁剪 */
+            justify-content: center;
+        }
+
+        .botton-caption {
+            margin-right: 10px;  /* 给caption与按钮之间留出间距 */
+            font-size: 16px;     /* 调整caption字体大小 */
+        }
+
         .description-68 {
-            grid-column: span 2;                     /* 描述文本跨越两列 */
-            width: 320px;                            /* 描述文本宽度320px（两列宽度） */
+            grid-column: span 1;                     /* 描述文本跨越两列 */
+            width: 250px;                            /* 描述文本宽度320px（两列宽度） */
             height: 50px;                           /* 描述文本高度160px */
             background-color: #ffffff;               /* 描述背景颜色 */
             text-align: center;                      /* 文本居中 */
@@ -231,6 +276,28 @@
             color: #000000;                             /* 文本颜色 */
         }
 
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .controls div {
+            text-align: center;
+            align-items: Center;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+
     </style>
 
 </head>
@@ -241,19 +308,20 @@
             <div class="container is-max-desktop">
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">GenPoly: Learning Generalized Shape Priors via 3D Polymorphic Evolving</h1>
+                        <h1 class="title is-1 publication-title">GenPoly: Learning Generalized and Tessellated Shape Priors via <br> 3D Polymorphic Evolving</h1>
                         <div class="is-size-5 publication-authors">
                             <span class="author-block">
                             Bangzhen Liu<sup>1</sup>,</span>
                             <span class="author-block">
-                            Yuyang Yu</a><sup>1</sup>,
+                            Yuyang Yu<sup>1</sup>,
                             </span>
                             <span class="author-block">
-                            Xuemiao Xu<sup>1</sup>,
+                            Xuemiao Xu</a><sup>1</sup>,
                             </span>
                             <span class="author-block">
-                            Cheng Xu<sup>2</sup>,
+                            Cheng Xu</a><sup>2</sup>,
                             </span>
+                            <br>
                             <span class="author-block">
                             Chenxi Zheng<sup>1</sup>,
                             </span>
@@ -261,45 +329,22 @@
                             Haoxin Yang<sup>1</sup>,
                             </span>
                             <span class="author-block">
-                            Shaoyu Huang<sup>1</sup>,
+                            Shaoyu Huang<sup>3</sup>,
                             </span>
                             <span class="author-block">
-                            Shengfeng He<sup>3</sup>
+                            Shengfeng He<sup>4</sup>
                             </span>
                         </div>
     
-                        <div class="is-size-5 publication-authors">
+                        <div class="is-size-5 publication-venue">
                             <span class="author-block"><sup>1</sup>South China University of Technology,
                             </span>
                             <span class="author-block"><sup>2</sup>The Hong Kong Polytechnic University,
                             </span>
-                            <span class="author-block"><sup>3</sup>Singapore Management University
+                            <span class="author-block"><sup>3</sup>Guangzhou Yichuang Information Technology Co., Ltd.
                             </span>
-                        </div>
-    
-                        <div class="column has-text-centered">
-                            <div class="publication-links">
-                                <!-- PDF Link. -->
-                                <span class="link-block">
-                                    <a href=""
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="fas fa-file-pdf"></i>
-                                        </span>
-                                        <span>Paper</span>
-                                    </a>
-                                </span>
-                                <!-- Code Link. -->
-                                <span class="link-block">
-                                    <a href=""
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="fab fa-github"></i>
-                                        </span>
-                                        <span>Code</span>
-                                    </a>
-                                </span>
-                            </div>
+                            <span class="author-block"><sup>4</sup>Singapore Management University
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -314,7 +359,7 @@
             </div>
             <div class="content has-text-justified">
                 <p>
-                    We introduce a novel 3D prior model for generalized fine-detailed 3D generation. Unlike current methods that (a) decompose objects into coarse-grained parts and focus on reassembling them into complete shapes, sacrificing local geometry details. (b) Our prior model explicitly excavates multi-level intricate local geometry variations and progressively refines shape details in a coarse-to-fine manner. This process yields versatile, tessellated priors that enable high-fidelity 3D generation across a variety of downstream tasks.
+                    We introduce a novel 3D prior model for generalized fine-detailed 3D generation. Unlike current methods that (a) decompose objects into coarse-grained parts and focus on reassembling them into complete shapes, sacrificing local geometry details. (b) Our prior model explicitly excavates multi-level intricate local geometry variations and progressively refines shape details in a coarse-to-fine manner. This process yields versatile, tessellated priors that enable high-fidelity 3D generation across various downstream tasks.
                 </p>
             </div>
         </div>
@@ -329,16 +374,7 @@
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            We introduce <strong>GenPoly</strong>, a novel generalized 3D prior model specially designed for multiple 3D generation tasks, with a distinct
-                            focus on fine details preservation. Previous works often assemble discrete parts into complete shapes, inevitably leading to loss of
-                            details. We remedy this problem by explicitly capturing nuanced local geometric variations across multiple levels, enabling detail-
-                            preserved 3D shape generation. Specifically, we first introduce a polymorphic variational autoencoder (PolyVAE), which constructs
-                            a versatile shape residual codebook via a polymorphic quantization mechanism. This codebook strategically encodes multilevel
-                            intricate local geometry representations within the latent space. Building on these representations, a 3D polymorphic evolving
-                            scheme is further developed to progressively refine local details in a coarse-to-fine manner. In this way, visually compelling 3D
-                            shapes with rich and complex details can be ultimately generated. The effectiveness of our method is demonstrated through extensive
-                            qualitative and quantitative evaluations, where GenPoly consistently surpasses state-of-the-art methods across various downstream tasks,
-                            particularly in local detail preservation.
+                            We introduce <strong>GenPoly</strong>, a novel generalized 3D prior model designed for multiple 3D generation tasks, focusing on preserving fine details. While previous works learn generalizable representations by decomposing objects into coarse-grained components to reassemble a coherent global structure, this approach sacrifices small-scale details. In this paper, we take a different perspective, formulating 3D prior modeling as a bottom-up polymorphic evolving process. Our key insight is that, beyond global structures, intricate local geometry variations hold rich contextual information that should be incorporated into the modeling process to learn fine-grained, generalizable representations. This allows coarse shapes to progressively evolve through multi-granular local geometry refinements, enabling high-fidelity 3D generation. To this end, we first introduce a polymorphic variational autoencoder (Poly-VAE), which constructs a versatile shape residual codebook via a polymorphic quantization mechanism. This codebook strategically encodes intricate local geometry representations from tesselated shapes within the latent space. Building on these representations, a 3D polymorphic evolving scheme is further developed to refine local details in a coarse-to-fine manner progressively. In this way, visually compelling 3D shapes with rich and complex details can be ultimately generated. The effectiveness of our method is demonstrated through extensive qualitative and quantitative evaluations, where GenPoly consistently surpasses state-of-the-art methods across various downstream tasks, particularly in local detail preservation. 
                         </p>
                     </div>
                 </div>
@@ -356,7 +392,7 @@
                     </div>
                     <div class="content has-text-justified">
                         <p>
-                            <strong>Overview of the proposed PolyVAE framework.</strong> Starting with an input shape \( \mathcal{X} \) , the shape feature \( Z \) is extracted by a 3D encoder \( \mathit{E} \) and progressively quantized into polymorphic geometric representations. These representations are response for constructing a diverse polymorphic residual codebook \( \mathcal{C} \) through a tailored polymorphic quantization mechanism. The quantization mechanism consists of \( n \) branches, with the first branch quantizing the basic shape feature \( Z_1 \), while the subsequent branches extract polymorphic residuals from residual shapes \( \left\{Z_2, ... Z_n\right\} \). This approach captures refined multi-scale geometric features, supporting the generation of 3D shapes using rich multi-resolution geometric representations from the polymorphic residual codebook. Finally, the quantized features\( \{\hat{Z}_1, ... \hat{Z}_n\} \) are cascadedly aggregated and decoded into 3D shapes via a shared decoder \( \mathit{D} \), where the reconstruction loss is computed.
+                            <strong>Overview of the proposed PolyVAE framework.</strong> Starting from an input shape \( \mathcal{X} \) , the shape feature \( Z \) is first extracted by a 3D encoder \( \mathit{E} \) and progressively quantized into polymorphic geometric representations for constructing a diverse polymorphic residual codebook \( \mathcal{C} \). This is achieved by using a \( n \)-branch polymorphic quantization mechanism, with the first branch quantizing the carse shape features \( Z_1 \), and the subsequent branches capturing polymorphic residuals \( \left\{Z_2, ... Z_n\right\} \). These local geometric features, with diverse geometric contexts, are maintained in a unified polymorphic residual codebook \( \mathcal{C} \) to facilitate the generation of 3D shapes using rich details. Finally, the quantized features \( \{\hat{Z}_1, ... \hat{Z}_n\} \) are aggregated and decoded to recover the input 3D shapes via a shared decoder \( \mathit{D} \).
                         </p>
                     </div>
             </div>
@@ -376,194 +412,237 @@
             <!-- 6行8列和9行10列的图像矩阵 -->
             <div class="image-grid-container-68-910-59-36">
 
+                
+
+                
                 <!-- 6行8列的图像矩阵 -->
-                <div class="image-grid-68">
-                    <!-- 第1行 -->
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_337.png" alt="GIF 1">
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_576.png" alt="GIF 2">
-                    <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_1197.gif" alt="GIF 3">
-                    <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_0265.gif" alt="GIF 4">
-                    <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_0461.gif" alt="GIF 5">
-                    <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_1310.gif" alt="GIF 6">
-                    <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_201.gif" alt="GIF 7">
-                    <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_32.gif" alt="GIF 8">
-                
-                    <!-- 第2行 -->
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_83.png" alt="GIF 9">
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_175.png" alt="GIF 10">
-                    <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_0446.gif" alt="GIF 11">
-                    <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_1350.gif" alt="GIF 12">
-                    <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_1018.gif" alt="GIF 13">
-                    <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_0724.gif" alt="GIF 14">
-                    <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_888.gif" alt="GIF 15">
-                    <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_464.gif" alt="GIF 16">
-                
-                    <!-- 第3行 -->
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_337.png" alt="GIF 17">
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_576.png" alt="GIF 18">
-                    <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_0730.gif" alt="GIF 19">
-                    <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_1058.gif" alt="GIF 20">
-                    <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0143.gif" alt="GIF 21">
-                    <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0028.gif" alt="GIF 22">
-                    <img src="./static/images/uncond/compare/ours/car/freecompress-car_370.gif" alt="GIF 23">
-                    <img src="./static/images/uncond/compare/ours/car/freecompress-car_24.gif" alt="GIF 24">
-                
-                    <!-- 第4行 -->
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_83.png" alt="GIF 25">
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_175.png" alt="GIF 26">
-                    <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_1349.gif" alt="GIF 27">
-                    <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_0427.gif" alt="GIF 28">
-                    <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0369.gif" alt="GIF 29">
-                    <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0314.gif" alt="GIF 30">
-                    <img src="./static/images/uncond/compare/ours/car/freecompress-car_414.gif" alt="GIF 31">
-                    <img src="./static/images/uncond/compare/ours/car/freecompress-car_121.gif" alt="GIF 32">
-                
-                    <!-- 第5行 -->
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_337.png" alt="GIF 33">
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_576.png" alt="GIF 34">
-                    <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0172.gif" alt="GIF 35">
-                    <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0398.gif" alt="GIF 36">
-                    <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0029.gif" alt="GIF 37">
-                    <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0639.gif" alt="GIF 38">
-                    <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0526.gif" alt="GIF 39">
-                    <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0256.gif" alt="GIF 40">
-
-                    <!-- 第6行 -->
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_83.png" alt="GIF 41">
-                    <img src="./static/images/uncond/compare/tiger/chair/morandyblue_chair_175.png" alt="GIF 42">
-                    <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0440.gif" alt="GIF 43">
-                    <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0281.gif" alt="GIF 44">
-                    <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0769.gif" alt="GIF 45">
-                    <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0177.gif" alt="GIF 46">
-                    <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0103.gif" alt="GIF 47">
-                    <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0091.gif" alt="GIF 48">
-
-                    <!-- 第7行 放方法描述--> 
-                    <div class="description-68"><strong>(a) TIGER</strong></div>
-                    <div class="description-68"><strong>(b) SDF-Diff</strong></div>
-                    <div class="description-68"><strong>(c) 3DQD</strong></div>
-                    <div class="description-68"><strong>(d) Ours</strong></div>
+                <div class="controls">
+                    <span class="botton-caption">Slide for more Chair : </span>
+                    <button onclick="slide('uncond_compare_chair', 'left', '250', '10', '4', '4')">Previous</button>
+                    <button onclick="slide('uncond_compare_chair', 'right', '250', '10', '4', '4')">Next</button>
                 </div>
+                <div class="uncond_compare_container">
+                    <div class="slide-image-grid-4", id="uncond_compare_chair">
+                        <!-- 第1行 -->
+                        <img src="./static/images/uncond/compare/tiger/chair/point_cloud_337.gif" alt="GIF 1">
+                        <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_1197.gif" alt="GIF 3">
+                        <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_0461.gif" alt="GIF 5">
+                        <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_201.gif" alt="GIF 7">
+                        <img src="./static/images/uncond/compare/tiger/chair/point_cloud_576.gif" alt="GIF 2">
+                        <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_0265.gif" alt="GIF 4">
+                        <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_1310.gif" alt="GIF 6">
+                        <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_32.gif" alt="GIF 8">
+                    
+                        <!-- 第2行 -->
+                        <img src="./static/images/uncond/compare/tiger/chair/point_cloud_83.gif" alt="GIF 9">
+                        <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_0446.gif" alt="GIF 11">
+                        <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_1018.gif" alt="GIF 13">
+                        <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_888.gif" alt="GIF 15">
+                        <img src="./static/images/uncond/compare/tiger/chair/point_cloud_175.gif" alt="GIF 10">
+                        <img src="./static/images/uncond/compare/sdfdiff/chair/freecompress-chair_1350.gif" alt="GIF 12">
+                        <img src="./static/images/uncond/compare/3dqd/chair/freecompress-chair_0724.gif" alt="GIF 14">
+                        <img src="./static/images/uncond/compare/ours/chair/freecompress-chair_464.gif" alt="GIF 16">
+                    </div>
+                </div>
+                <div class="controls">
+                    <span class="botton-caption">Slide for more Car : </span>
+                    <button onclick="slide('uncond_compare_car', 'left', '250', '10', '4', '4')">Previous</button>
+                    <button onclick="slide('uncond_compare_car', 'right', '250', '10', '4', '4')">Next</button>
+                </div>
+                <div class="uncond_compare_container">
+                    <div class="slide-image-grid-4", id="uncond_compare_car">
+                        <img src="./static/images/uncond/compare/tiger/car/point_cloud_144.gif" alt="GIF 25">
+                        <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_1349.gif" alt="GIF 27">
+                        <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0369.gif" alt="GIF 29">
+                        <img src="./static/images/uncond/compare/ours/car/freecompress-car_414.gif" alt="GIF 31">
+                        <img src="./static/images/uncond/compare/tiger/car/point_cloud_269.gif" alt="GIF 18">
+                        <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_1058.gif" alt="GIF 20">
+                        <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0028.gif" alt="GIF 22">
+                        <img src="./static/images/uncond/compare/ours/car/freecompress-car_24.gif" alt="GIF 24">
+                        
+
+                        <img src="./static/images/uncond/compare/tiger/car/point_cloud_62.gif" alt="GIF 17">
+                        <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_0730.gif" alt="GIF 19">
+                        <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0143.gif" alt="GIF 21">
+                        <img src="./static/images/uncond/compare/ours/car/freecompress-car_370.gif" alt="GIF 23">
+                        <img src="./static/images/uncond/compare/tiger/car/point_cloud_2.gif" alt="GIF 26">
+                        <img src="./static/images/uncond/compare/sdfdiff/car/freecompress-car_0427.gif" alt="GIF 28">
+                        <img src="./static/images/uncond/compare/3dqd/car/freecompress-car_0314.gif" alt="GIF 30">
+                        <img src="./static/images/uncond/compare/ours/car/freecompress-car_121.gif" alt="GIF 32">
+                    </div>
+                </div>
+                <div class="controls">
+                    <span class="botton-caption">Slide for more Airplane : </span>
+                    <button onclick="slide('uncond_compare_airplane', 'left', '250', '10', '4', '4')">Previous</button>
+                    <button onclick="slide('uncond_compare_airplane', 'right', '250', '10', '4', '4')">Next</button>
+                </div>
+                <div class="uncond_compare_container">
+                    <div class="slide-image-grid-4", id="uncond_compare_airplane">
+                        <img src="./static/images/uncond/compare/tiger/airplane/point_cloud_357.gif" alt="GIF 34">
+                        <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0398.gif" alt="GIF 36">
+                        <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0639.gif" alt="GIF 38">
+                        <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0256.gif" alt="GIF 40">
+
+                        <img src="./static/images/uncond/compare/tiger/airplane/point_cloud_80.gif" alt="GIF 42">
+                        <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0281.gif" alt="GIF 44">
+                        <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0177.gif" alt="GIF 46">
+                        <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0091.gif" alt="GIF 48">
+
+                        <img src="./static/images/uncond/compare/tiger/airplane/point_cloud_332.gif" alt="GIF 33">
+                        <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0172.gif" alt="GIF 35">
+                        <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0029.gif" alt="GIF 37">
+                        <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0526.gif" alt="GIF 39">
+
+                        <img src="./static/images/uncond/compare/tiger/airplane/point_cloud_138.gif" alt="GIF 41">
+                        <img src="./static/images/uncond/compare/sdfdiff/airplane/freecompress-airplane_0440.gif" alt="GIF 43">
+                        <img src="./static/images/uncond/compare/3dqd/airplane/freecompress-airplane_0769.gif" alt="GIF 45">
+                        <img src="./static/images/uncond/compare/ours/airplane/freecompress-airplane_0103.gif" alt="GIF 47">
+                        
+
+                    </div>
+                    <!-- 第7行 放方法描述--> 
+                    <div class="slide-image-grid-4">
+                        <div class="description-68"><strong>(a) TIGER</strong></div>
+                        <div class="description-68"><strong>(b) SDF-Diff</strong></div>
+                        <div class="description-68"><strong>(c) 3DQD</strong></div>
+                        <div class="description-68"><strong>(d) Ours</strong></div>
+                    </div>
+                </div>
+                
 
                 <!-- 添加描述段落 -->
                 <div class="additional-description-68">
-                    <strong>Qualitative comparisons for unconditional generation.</strong> We select similar generated shapes of different methods for more comparable evaluation. Our generated shapes are of high quality, with well geometric details and smooth surfaces. We recommand zooming in for better viewing.
+                    <strong>Qualitative comparisons for unconditional generation.</strong> We select similar generated shapes of different methods for more comparable evaluation. Our generated shapes are of high quality, with well geometric details and smooth surfaces. Best viewed with zooming in digital version.
                 </div>
                 
-                <!-- 9行10列的图像矩阵 -->
-                <div class="image-grid-910">
-                    <!-- 第1行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 1">
-                    <img src="./static/images/00000.gif" alt="GIF 2">
-                    <img src="./static/images/00000.gif" alt="GIF 3">
-                    <img src="./static/images/00000.gif" alt="GIF 4">
-                    <img src="./static/images/00000.gif" alt="GIF 5">
-                    <img src="./static/images/00000.gif" alt="GIF 6">
-                    <img src="./static/images/00000.gif" alt="GIF 7">
-                    <img src="./static/images/00000.gif" alt="GIF 8">
-                    <img src="./static/images/00000.gif" alt="GIF 9">
-                    <img src="./static/images/00000.gif" alt="GIF 10">
+                <div class="controls">
+                    <span class="botton-caption">Slide for more Chair : </span>
+                    <button onclick="slide('uncond_ours_chair', 'left', '180', '10', '5', '2')">Previous</button>
+                    <button onclick="slide('uncond_ours_chair', 'right', '180', '10', '5', '2')">Next</button>
+                </div>
                 
-                    <!-- 第2行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 11">
-                    <img src="./static/images/00000.gif" alt="GIF 12">
-                    <img src="./static/images/00000.gif" alt="GIF 13">
-                    <img src="./static/images/00000.gif" alt="GIF 14">
-                    <img src="./static/images/00000.gif" alt="GIF 15">
-                    <img src="./static/images/00000.gif" alt="GIF 16">
-                    <img src="./static/images/00000.gif" alt="GIF 17">
-                    <img src="./static/images/00000.gif" alt="GIF 18">
-                    <img src="./static/images/00000.gif" alt="GIF 19">
-                    <img src="./static/images/00000.gif" alt="GIF 20">
+                <div class="uncond_container" >
+
+                    <!-- 9行10列的图像矩阵 -->
+                    <div class="slide-image-grid-5",  id="uncond_ours_chair">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_1047.gif" alt="GIF 1">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_1055.gif" alt="GIF 2">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_1124.gif" alt="GIF 3">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_1125.gif" alt="GIF 4">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_1136.gif" alt="GIF 5">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_1154.gif" alt="GIF 6">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_121.gif" alt="GIF 7">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_1214.gif" alt="GIF 8">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_213.gif" alt="GIF 9">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_224.gif" alt="GIF 10">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_231.gif" alt="GIF 11">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_245.gif" alt="GIF 12">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_259.gif" alt="GIF 13">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_272.gif" alt="GIF 14">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_289.gif" alt="GIF 15">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_36.gif" alt="GIF 16">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_364.gif" alt="GIF 17">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_386.gif" alt="GIF 18">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_464.gif" alt="GIF 19">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_509.gif" alt="GIF 20">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_584.gif" alt="GIF 21">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_643.gif" alt="GIF 22">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_663.gif" alt="GIF 23">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_667.gif" alt="GIF 24">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_701.gif" alt="GIF 25">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_829.gif" alt="GIF 26">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_883.gif" alt="GIF 27">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_888.gif" alt="GIF 28">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_943.gif" alt="GIF 29">
+                        <img src="./static/images/uncond/ourshow/chair/freecompress-chair_95.gif" alt="GIF 30">
+                    </div>
+                </div>
                 
-                    <!-- 第3行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 21">
-                    <img src="./static/images/00000.gif" alt="GIF 22">
-                    <img src="./static/images/00000.gif" alt="GIF 23">
-                    <img src="./static/images/00000.gif" alt="GIF 24">
-                    <img src="./static/images/00000.gif" alt="GIF 25">
-                    <img src="./static/images/00000.gif" alt="GIF 26">
-                    <img src="./static/images/00000.gif" alt="GIF 27">
-                    <img src="./static/images/00000.gif" alt="GIF 28">
-                    <img src="./static/images/00000.gif" alt="GIF 29">
-                    <img src="./static/images/00000.gif" alt="GIF 30">
-  
-                    <!-- 第4行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 31">
-                    <img src="./static/images/00000.gif" alt="GIF 32">
-                    <img src="./static/images/00000.gif" alt="GIF 33">
-                    <img src="./static/images/00000.gif" alt="GIF 34">
-                    <img src="./static/images/00000.gif" alt="GIF 35">
-                    <img src="./static/images/00000.gif" alt="GIF 36">
-                    <img src="./static/images/00000.gif" alt="GIF 37">
-                    <img src="./static/images/00000.gif" alt="GIF 38">
-                    <img src="./static/images/00000.gif" alt="GIF 39">
-                    <img src="./static/images/00000.gif" alt="GIF 40">
-  
-                    <!-- 第5行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 41">
-                    <img src="./static/images/00000.gif" alt="GIF 42">
-                    <img src="./static/images/00000.gif" alt="GIF 43">
-                    <img src="./static/images/00000.gif" alt="GIF 44">
-                    <img src="./static/images/00000.gif" alt="GIF 45">
-                    <img src="./static/images/00000.gif" alt="GIF 46">
-                    <img src="./static/images/00000.gif" alt="GIF 47">
-                    <img src="./static/images/00000.gif" alt="GIF 48">
-                    <img src="./static/images/00000.gif" alt="GIF 49">
-                    <img src="./static/images/00000.gif" alt="GIF 50">
-  
-                    <!-- 第6行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 51">
-                    <img src="./static/images/00000.gif" alt="GIF 52">
-                    <img src="./static/images/00000.gif" alt="GIF 53">
-                    <img src="./static/images/00000.gif" alt="GIF 54">
-                    <img src="./static/images/00000.gif" alt="GIF 55">
-                    <img src="./static/images/00000.gif" alt="GIF 56">
-                    <img src="./static/images/00000.gif" alt="GIF 57">
-                    <img src="./static/images/00000.gif" alt="GIF 58">
-                    <img src="./static/images/00000.gif" alt="GIF 59">
-                    <img src="./static/images/00000.gif" alt="GIF 60">
-  
-                    <!-- 第7行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 61">
-                    <img src="./static/images/00000.gif" alt="GIF 62">
-                    <img src="./static/images/00000.gif" alt="GIF 63">
-                    <img src="./static/images/00000.gif" alt="GIF 64">
-                    <img src="./static/images/00000.gif" alt="GIF 65">
-                    <img src="./static/images/00000.gif" alt="GIF 66">
-                    <img src="./static/images/00000.gif" alt="GIF 67">
-                    <img src="./static/images/00000.gif" alt="GIF 68">
-                    <img src="./static/images/00000.gif" alt="GIF 69">
-                    <img src="./static/images/00000.gif" alt="GIF 70">
-  
-                    <!-- 第8行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 71">
-                    <img src="./static/images/00000.gif" alt="GIF 72">
-                    <img src="./static/images/00000.gif" alt="GIF 73">
-                    <img src="./static/images/00000.gif" alt="GIF 74">
-                    <img src="./static/images/00000.gif" alt="GIF 75">
-                    <img src="./static/images/00000.gif" alt="GIF 76">
-                    <img src="./static/images/00000.gif" alt="GIF 77">
-                    <img src="./static/images/00000.gif" alt="GIF 78">
-                    <img src="./static/images/00000.gif" alt="GIF 79">
-                    <img src="./static/images/00000.gif" alt="GIF 80">
-  
-                    <!-- 第9行 -->
-                    <img src="./static/images/00000.gif" alt="GIF 81">
-                    <img src="./static/images/00000.gif" alt="GIF 82">
-                    <img src="./static/images/00000.gif" alt="GIF 83">
-                    <img src="./static/images/00000.gif" alt="GIF 84">
-                    <img src="./static/images/00000.gif" alt="GIF 85">
-                    <img src="./static/images/00000.gif" alt="GIF 86">
-                    <img src="./static/images/00000.gif" alt="GIF 87">
-                    <img src="./static/images/00000.gif" alt="GIF 88">
-                    <img src="./static/images/00000.gif" alt="GIF 89">
-                    <img src="./static/images/00000.gif" alt="GIF 90">
-                  </div>
+                <div class="controls">
+                    <span class="botton-caption">Slide for more Car : </span>
+                    <button onclick="slide('uncond_ours_car', 'left', '180', '10', '5', '2')">Previous</button>
+                    <button onclick="slide('uncond_ours_car', 'right', '180', '10', '5', '2')">Next</button>
+                </div>
+                <div class="uncond_container" >
+                    <div class="slide-image-grid-5",  id="uncond_ours_car">
+
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_0136.gif" alt="GIF 31">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_0445.gif" alt="GIF 32">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_102.gif" alt="GIF 33">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_11.gif" alt="GIF 34">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_111.gif" alt="GIF 35">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_121.gif" alt="GIF 36">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_123.gif" alt="GIF 37">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_14.gif" alt="GIF 38">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_161.gif" alt="GIF 39">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_163.gif" alt="GIF 40">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_177.gif" alt="GIF 41">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_215.gif" alt="GIF 42">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_24.gif" alt="GIF 43">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_30.gif" alt="GIF 44">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_35.gif" alt="GIF 45">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_368.gif" alt="GIF 46">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_369.gif" alt="GIF 47">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_37.gif" alt="GIF 48">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_370.gif" alt="GIF 49">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_399.gif" alt="GIF 50">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_413.gif" alt="GIF 51">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_414.gif" alt="GIF 52">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_451.gif" alt="GIF 53">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_52.gif" alt="GIF 54">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_551.gif" alt="GIF 55">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_70.gif" alt="GIF 56">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_83.gif" alt="GIF 57">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_87.gif" alt="GIF 58">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_91.gif" alt="GIF 59">
+                        <img src="./static/images/uncond/ourshow/car/freecompress-car_94.gif" alt="GIF 60">
+                    </div>
+                </div>
                 
+                <div class="controls">
+                    <span class="botton-caption">Slide for more Airplane : </span>
+                    <button onclick="slide('uncond_ours_airplane', 'left', '180', '10', '5', '2')">Previous</button>
+                    <button onclick="slide('uncond_ours_airplane', 'right', '180', '10', '5', '2')">Next</button>
+                </div>
+                <div class="uncond_container" >
+                    <div class="slide-image-grid-5",  id="uncond_ours_airplane">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0007.gif" alt="GIF 61">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0009.gif" alt="GIF 62">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0018.gif" alt="GIF 63">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0023.gif" alt="GIF 64">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0045.gif" alt="GIF 65">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0051.gif" alt="GIF 66">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0053.gif" alt="GIF 67">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0091.gif" alt="GIF 68">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0094.gif" alt="GIF 69">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0101.gif" alt="GIF 70">
+
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0116.gif" alt="GIF 71">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0138.gif" alt="GIF 72">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0145.gif" alt="GIF 73">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0148.gif" alt="GIF 74">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0186.gif" alt="GIF 75">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0216.gif" alt="GIF 76">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0219.gif" alt="GIF 77">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0235.gif" alt="GIF 78">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0236.gif" alt="GIF 79">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0256.gif" alt="GIF 80">
+
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0271.gif" alt="GIF 81">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0308.gif" alt="GIF 82">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0338.gif" alt="GIF 83">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0381.gif" alt="GIF 84">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0546.gif" alt="GIF 85">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0683.gif" alt="GIF 86">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0733.gif" alt="GIF 87">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0734.gif" alt="GIF 88">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0738.gif" alt="GIF 89">
+                        <img src="./static/images/uncond/ourshow/airplane/freecompress-airplane_0764.gif" alt="GIF 90">
+                    </div>
+                </div>
                   <!-- 添加描述段落 -->
                 <div class="additional-description-910">
-                    <strong>Qualitative results of unconditional generation for chair, car and airplane on ShapeNet, respectively.</strong> Our PolyVAE could sufficiently capture geometric informations of various scales, and  hence facilitate high-fidelity 3D shape generation with diverse style and promising details. We recommend zooming in for better viewing.
+                    <strong>Here are our more qualitative results of unconditional generation for chairs, cars, and airplanes on ShapeNet.</strong> Our PolyVAE could sufficiently capture geometric informations of various scales, and hence facilitate detail-preserving 3D shape generation with diverse style and promising details. Best viewed with zooming in digital version.
                 </div>
 
             </div>
@@ -577,9 +656,6 @@
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
                     <h2 class="title is-3">Text-conditioned Generation</h2>
-                    <p>
-                        Given a text description, Our method can generate diverse and high quality shapes.
-                    </p>
                 </div>
             </div>
 
@@ -590,55 +666,55 @@
                 <div class="image-grid-59">
                     <!-- 第1行 -->
                     <div class="text-description-59"><strong>A chair with circular seat.</strong></div>
-                    <img src="./static/images/00000.gif" alt="GIF 1">
-                    <img src="./static/images/00000.gif" alt="GIF 2">
-                    <img src="./static/images/00000.gif" alt="GIF 3">
-                    <img src="./static/images/00000.gif" alt="GIF 4">
-                    <img src="./static/images/00000.gif" alt="GIF 5">
-                    <img src="./static/images/00000.gif" alt="GIF 6">
-                    <img src="./static/images/00000.gif" alt="GIF 7">
+                    <img src="./static/images/text2shape/compare/3dqd/freecompress-149_6.gif" alt="GIF 1">
+                    <img src="./static/images/text2shape/compare/3dqd/freecompress-149_8.gif" alt="GIF 2">
+                    <img src="./static/images/text2shape/compare/sdfusion/freecompress-149_1.gif" alt="GIF 3">
+                    <img src="./static/images/text2shape/compare/sdfusion/freecompress-149_7.gif" alt="GIF 4">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0149_0.gif" alt="GIF 5">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0149_3.gif" alt="GIF 6">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0149_7.gif" alt="GIF 7">
 
                     <!-- 第2行 -->
                     <div class="text-description-59"><strong>A chair that has a really long backrest.</strong></div>
-                    <img src="./static/images/00000.gif" alt="GIF 8">
-                    <img src="./static/images/00000.gif" alt="GIF 9">
-                    <img src="./static/images/00000.gif" alt="GIF 10">
-                    <img src="./static/images/00000.gif" alt="GIF 11">
-                    <img src="./static/images/00000.gif" alt="GIF 12">
-                    <img src="./static/images/00000.gif" alt="GIF 13">
-                    <img src="./static/images/00000.gif" alt="GIF 14">
+                    <img src="./static/images/text2shape/compare/3dqd/freecompress-204_0.gif" alt="GIF 8">
+                    <img src="./static/images/text2shape/compare/3dqd/freecompress-204_2.gif" alt="GIF 9">
+                    <img src="./static/images/text2shape/compare/sdfusion/freecompress-204_4.gif" alt="GIF 10">
+                    <img src="./static/images/text2shape/compare/sdfusion/freecompress-204_5.gif" alt="GIF 11">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0204_0.gif" alt="GIF 12">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0204_1.gif" alt="GIF 13">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0204_6.gif" alt="GIF 14">
 
                     <!-- 第3行 -->
                     <div class="text-description-59"><strong>A chair with an opening at the bottom of the backrest.</strong></div>
-                    <img src="./static/images/00000.gif" alt="GIF 15">
-                    <img src="./static/images/00000.gif" alt="GIF 16">
-                    <img src="./static/images/00000.gif" alt="GIF 17">
-                    <img src="./static/images/00000.gif" alt="GIF 18">
-                    <img src="./static/images/00000.gif" alt="GIF 19">
-                    <img src="./static/images/00000.gif" alt="GIF 20">
-                    <img src="./static/images/00000.gif" alt="GIF 21">
+                    <img src="./static/images/text2shape/compare/3dqd/freecompress-244_1.gif" alt="GIF 15">
+                    <img src="./static/images/text2shape/compare/3dqd/freecompress-244_4.gif" alt="GIF 16">
+                    <img src="./static/images/text2shape/compare/sdfusion/freecompress-244_1.gif" alt="GIF 17">
+                    <img src="./static/images/text2shape/compare/sdfusion/freecompress-244_3.gif" alt="GIF 18">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0188_2.gif" alt="GIF 19">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0188_5.gif" alt="GIF 20">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0188_8.gif" alt="GIF 21">
 
                     <!-- 第4行 -->
                     <div class="text-description-59"><strong>A wooden chair featuring slats on all sides, including the armrests.</strong></div>
-                    <img src="./static/images/00000.gif" alt="GIF 22">
-                    <img src="./static/images/00000.gif" alt="GIF 23">
-                    <img src="./static/images/00000.gif" alt="GIF 24">
-                    <img src="./static/images/00000.gif" alt="GIF 25">
-                    <img src="./static/images/00000.gif" alt="GIF 26">
-                    <img src="./static/images/00000.gif" alt="GIF 27">
-                    <img src="./static/images/00000.gif" alt="GIF 28">
+                    <img src="./static/images/text2shape/compare/3dqd/freecompress-240_8.gif" alt="GIF 22">
+                    <img src="./static/images/text2shape/compare/3dqd/freecompress-240_7.gif" alt="GIF 23">
+                    <img src="./static/images/text2shape/compare/sdfusion/freecompress-240_1.gif" alt="GIF 24">
+                    <img src="./static/images/text2shape/compare/sdfusion/freecompress-240_3.gif" alt="GIF 25">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0240_3.gif" alt="GIF 26">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0240_4.gif" alt="GIF 27">
+                    <img src="./static/images/text2shape/compare/ours/freecompress-chair_0240_5.gif" alt="GIF 28">
 
                     <!-- 第5行 -->
                     <div class="description-59-2column"></div>
-                    <div class="description-59-2column"><strong>3DQD</strong></div>
-                    <div class="description-59-2column"><strong>SDFusion</strong></div>
-                    <div class="description-59-3column"><strong>Ours</strong></div>
+                    <div class="description-59-2column"><strong>(a) 3DQD</strong></div>
+                    <div class="description-59-2column"><strong>(b) SDFusion</strong></div>
+                    <div class="description-59-3column"><strong>(c) Ours</strong></div>
 
                 </div>
 
                 <!-- 添加描述段落 -->
                 <div class="additional-description-59">
-                    <strong>Qualitative comparisons for text-conditioned generation.</strong> Our generated shapes are more detail-preserving and better aligned with the text descriptions. We recommand zooming in for better viewing.
+                    <strong>Qualitative comparisons for text-conditioned generation.</strong> Our generated shapes are more detail-preserving and better aligned with the text descriptions. Best viewed with zooming in digital version.
                 </div>
             </div>
 
@@ -651,46 +727,43 @@
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
                     <h2 class="title is-3">Single-view Shape Reconstruction</h2>
-                    <p>
-                        The results of single-view reconstruction.
-                    </p>
                 </div>
             </div>
 
             <div class="image-grid-container-68-910-59-36">
-                
+
                 <!-- 3行6列的图像矩阵 -->
                 <div class="image-grid-36">
 
                     <!-- 第1行 -->
                     <img src="./static/images/image2shape/img/img_0064.png" alt="img 1">
-                    <img src="./static/images/00000.gif" alt="GIF 1">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0064.gif" alt="GIF 1">
                     <img src="./static/images/image2shape/img/img_0067.png" alt="img 2">
-                    <img src="./static/images/00000.gif" alt="GIF 2">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0067.gif" alt="GIF 2">
                     <img src="./static/images/image2shape/img/img_0088.png" alt="img 3">
-                    <img src="./static/images/00000.gif" alt="GIF 3">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0088.gif" alt="GIF 3">
 
                     <!-- 第2行 -->
                     <img src="./static/images/image2shape/img/img_0120.png" alt="img 4">
-                    <img src="./static/images/00000.gif" alt="GIF 4">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0120.gif" alt="GIF 4">
                     <img src="./static/images/image2shape/img/img_0303.png" alt="img 5">
-                    <img src="./static/images/00000.gif" alt="GIF 5">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0303.gif" alt="GIF 5">
                     <img src="./static/images/image2shape/img/img_0377.png" alt="img 6">
-                    <img src="./static/images/00000.gif" alt="GIF 6">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0377.gif" alt="GIF 6">
 
                     <!-- 第3行 -->
                     <img src="./static/images/image2shape/img/img_0039.png" alt="img 7">
-                    <img src="./static/images/00000.gif" alt="GIF 7">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0039.gif" alt="GIF 7">
                     <img src="./static/images/image2shape/img/img_0055.png" alt="img 8">
-                    <img src="./static/images/00000.gif" alt="GIF 8">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0055.gif" alt="GIF 8">
                     <img src="./static/images/image2shape/img/img_0077.png" alt="img 9">
-                    <img src="./static/images/00000.gif" alt="GIF 9">
+                    <img src="./static/images/image2shape/gif/freecompress-chair_0077.gif" alt="GIF 9">
 
                 </div>
 
                 <!-- 添加描述段落 -->
                 <div class="additional-description-36">
-                    Examples for single-view shape reconstruction.
+                    <strong>Examples for single-view shape reconstruction.</strong> With low cost finetuning, our method could quickly and flexibly generalize to image-conditioned reconstruction tasks under real-world scenes.
                 </div>
                 
             </div>
@@ -698,6 +771,41 @@
         </div>
     </section>
     <hr class="divider"> 
+
+    <script>
+        function slide(containerId, direction, width, gap, visImages, sldImages) {
+            const imageGrid = document.getElementById(containerId);
+            const imageWidth = Number(width); // 每张图片的宽度
+            const imageMargin = Number(gap);  // 每张图片的左右间距s
+            const visibleImages = Number(visImages); // 页面上显示5张图片
+            const slideImages = Number(sldImages);   // 一次滑动3张图片
+            const imageCount = imageGrid.children.length; // 总图片数量
+            
+            // 每张图片的宽度包括左右间距
+            const totalImageWidth = imageWidth + imageMargin;
+            const gridWidth = visibleImages * totalImageWidth; // 容器的总宽度
+            const totalScrollWidth = (imageCount - visibleImages) * totalImageWidth; // 可滑动的总距离
+    
+            let currentScrollPosition = imageGrid.dataset.scrollPosition || 0; // 从data属性读取当前滚动位置
+            currentScrollPosition = parseInt(currentScrollPosition, 10); // 转换为整数
+    
+            if (direction === 'left') {
+                currentScrollPosition += slideImages * totalImageWidth;
+                if (currentScrollPosition > 0) {
+                    currentScrollPosition = 0; // 防止溢出左侧
+                }
+            } else if (direction === 'right') {
+                currentScrollPosition -= slideImages * totalImageWidth;
+                if (currentScrollPosition < -totalScrollWidth) {
+                    currentScrollPosition = -totalScrollWidth; // 防止溢出右侧
+                }
+            }
+    
+            // 更新transform和data属性
+            imageGrid.style.transform = `translateX(${currentScrollPosition}px)`;
+            imageGrid.dataset.scrollPosition = currentScrollPosition;
+        }
+    </script>
 
 </body>
 
